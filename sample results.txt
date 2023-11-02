@@ -1,0 +1,170 @@
+#newschool_df = df.reindex(columns =['Student ID', 'student_name', 'school_name', 'School ID','type','budget','size','year','gender','reading_score','maths_score'])
+#school_ID = pd.Index(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15)
+#print(school_ID)
+#new_df = pd.merge(newschool_df,total_ranked_schools,on = "School ID",how="right")
+#new_df
+
+
+df.groupby(["school_name"]).value_counts()
+#cols = pd.Series(['size', 'budget']) -- didnot work
+#total_budget = school_data_complete.groupby("budget").cumsum()
+#print(total_budget)
+#Average_reading_score = school_data_complete.loc["reading_score"].mean()
+pd.Average_Maths_Score.round(2).astype(int)
+total_students = totalstudents_budget.agg({'size': ['sum']})
+total_budget= totalstudents_budget.agg({'budget': ['sum']})
+
+for row in Avg_calculator.iterrows():
+    Average_Maths_Score = Avg_calculator.mean()
+    total_maths_score = Avg_calculator.agg(['sum'])
+    total_reading_score = Avg_calculator.agg(['sum'])
+    Percentage_passing_maths = (Avg_calculator[row]/total_maths_score)*100
+    percentage_Passing_reading = (Avg_calculator[row]/total_reading_score)*100
+print("Total Maths Score = "+str(total_maths_score))
+print("Total Reading score = "+str(total_reading_score))
+print("Average maths score ="+str(Average_Maths_Score))
+#Percentage_passing_maths = (Avg_calculator['maths_score']/total_maths_score)*100
+print("Percentage passing maths score"+str(Percentage_passing_maths) +"%")
+#percentage_Passing_reading = (Avg_calculator['reading_score']/total_reading_score)*100
+print("Percentage passing reading score"+str(percentage_Passing_reading) +"%")
+Overall_Passing_score = (Average_Maths_Score + Average_reading_score)/total_students *100
+#result = goverment_Area_summary.DataFrame([Total_Schools],[total_students],[total_budget],[Average_Maths_Score],[Average_reading_score],[Percentage_passing_maths],[percentage_Passing_reading],[Overall_Passing_score])
+#print("TotalSchools" +"Total Students"+"TotalBudget"+"Average_Maths_Score"+"Average Reading Score"+"%Passing Maths"+"%Passing Reading"+"%Overall Passing")
+#print("\n--------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
+#print(result)
+
+
+
+#print(f"Total school count = {Total_Schools}")
+#totalstudents_budget = school_data_complete[['size', 'budget']]
+#totalstudents_budget.head()
+#total_students = totalstudents_budget.agg({'size': ['sum']})
+#total_budget= totalstudents_budget.agg({'budget': ['sum']})
+#print(f"Total Students = {total_students}")
+#print(f"Total Budget = {total_budget}")
+
+
+#resultingLGAS=pd.DataFrame('Total_Schools':Total_Schools,'TotalSchoolByType':TotalSchoolByType,'totalSchoolBudgetByType':totalSchoolBudgetByType)
+#print(resultingLGAS)
+
+
+df = school_data_complete.set_index("type")
+df.head()
+#print(school_data_complete)
+Total_Schools = len(df) # total s
+TotalStudentSizeByType = df.groupby(by="type").agg('size').apply(lambda x:x) #total students by type
+totalSchoolBudgetByType = df.groupby(by="type").agg('budget')# total budget
+passlevel = 50
+#Avg_calculator = pd.df[['gender','year','School_name','reading_score','maths_score']] #new dataframe
+#Avg_calculator.head()
+#total_readingscoreByschool = 
+Avg_reading_score = df.groupby(by='school_name')('reading_score').mean() #avg readingscore by schoolname
+print(f"Average reading score = {Average_reading_score}") # print avg reading score
+Avg_maths_score = df.groupby(by='school_name')('maths_score').mean()# avg maths score by schoolname
+print(f"Average maths score = {Average_Maths_Score}") #print avg maths score
+readingscoreAbovePass= df.loc[df["reading_score"]>=passlevel] #select readingscore >=50
+print(Rpercentageabovepass = (readingscoreAbovePass.value_counts()/readingscoreAbovePass.sum())*100)
+mathscoreAbovePass= df.loc[df["maths_score"]>=passlevel] #select readingscore >=50
+print(Mpercentageabovepass = (mathscoreAbovePass.value_counts()/mathscoreAbovePass.sum())*100)
+
+#total_maths_score = Avg_calc.groupby("school_name").agg({"maths_score":"sum"})
+#print(f"total maths score = {total_maths_score}") # print total maths score
+#total_reading_score = Avg_calc.groupby("school_name").agg({"reading_score":"sum"})
+#print(f"total reading score = {total_reading_score}") 
+#Percentage_passing_maths = (Avg_calculator['maths_score']>= 50/total_maths_score)*100
+#print(f"Percentage passing maths score = {Percentage_passing_maths} %")
+
+#print(f"Total Maths Score = {total_maths_score}")
+#print(f"Total Reading score = {total_reading_score}")
+
+#Percentage_passing_maths = (Avg_calculator['maths_score']/total_maths_score)*100
+#print(f"Percentage passing maths score = {Percentage_passing_maths} %")
+#percentage_Passing_reading = (Avg_calculator['reading_score']/total_reading_score)*100
+#print(f"Percentage passing reading score = {percentage_Passing_reading} %")
+#Overall_Passing_score = (Average_Maths_Score + Average_reading_score)/total_students *100
+#result = goverment_Area_summary.DataFrame([Total_Schools],[total_students],[total_budget],[Average_Maths_Score],[Average_reading_score],[Percentage_passing_maths],[percentage_Passing_reading],[Overall_Passing_score])
+#print("TotalSchools" +"Total Students"+"TotalBudget"+"Average_Maths_Score"+"Average Reading Score"+"%Passing Maths"+"%Passing Reading"+"%Overall Passing")
+#print("\n--------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
+#print(result)
+
+
+--------------------------------------------------------------------------------------
+      Student ID     student_name gender  year         school_name  \
+
+0               0     Paul Bradley      M     9   Huang High School   
+1               1     Victor Smith      M    12   Huang High School   
+2               2  Kevin Rodriguez      M    12   Huang High School   
+3               3    Richard Scott      M    12   Huang High School   
+4               4       Bonnie Ray      F     9   Huang High School   
+...           ...              ...    ...   ...                 ...   
+39165       39165     Donna Howard      F    12  Thomas High School   
+39166       39166        Dawn Bell      F    10  Thomas High School   
+39167       39167   Rebecca Tanner      F     9  Thomas High School   
+39168       39168     Desiree Kidd      F    10  Thomas High School   
+39169       39169  Carolyn Jackson      F    11  Thomas High School   
+
+       reading_score  maths_score  School ID         type  size   budget  
+0                 96           94          0   Government  2917  1910635  
+1                 90           43          0   Government  2917  1910635  
+2                 41           76          0   Government  2917  1910635  
+3                 89           86          0   Government  2917  1910635  
+4                 87           69          0   Government  2917  1910635  
+...              ...          ...        ...          ...   ...      ...  
+39165             51           48         14  Independent  1635  1043130  
+39166             81           89         14  Independent  1635  1043130  
+39167             99           99         14  Independent  1635  1043130  
+39168             72           77         14  Independent  1635  1043130  
+39169             47           62         14  Independent  1635  1043130  
+
+[39170 rows x 11 columns]
+## Local Government Area Summary
+​
+* Calculate the total number of schools
+​
+* Calculate the total number of students
+​
+* Calculate the total budget
+​
+* Calculate the average maths score 
+​
+* Calculate the average reading score
+​
+* Calculate the percentage of students with a passing maths score (50 or greater)
+​
+* Calculate the percentage of students with a passing reading score (50 or greater)
+​
+* Calculate the percentage of students who passed maths **and** reading (% Overall Passing)
+​
+* Create a dataframe to hold the above results
+​
+* Optional: give the displayed data cleaner formatting
+Total_Schools = school_data_complete[school_data_complete["school_name"]].count()
+print(Total_Schools)
+#total_students = school_data_complete.loc["size"].sum()
+#total_budget = school_data_complete.loc["budget"].sum()
+#Average_Maths_Score = school_data_complete.loc["maths_score"].mean()
+#Average_reading_score = school_data_complete.loc["reading_score"].mean()
+#Percentage_passing_maths = Average_Maths_Score/100
+#percentage_Passing_reading = Average_reading_score/100
+#Overall_Passing_score = (Average_Maths_Score + Average_reading_score)/total_students *100
+#result = goverment_Area_summary.DataFrame([Total_Schools],[total_students],[total_budget],[Average_Maths_Score],[Average_reading_score],[Percentage_passing_maths],[percentage_Passing_reading],[Overall_Passing_score])
+#print("TotalSchools" +"Total Students"+"TotalBudget"+"Average_Maths_Score"+"Average Reading Score"+"%Passing Maths"+"%Passing Reading"+"%Overall Passing")
+#print("\n--------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n")
+#print(result)
+​
+---------------------------------------------------------------------------
+KeyError                                  Traceback (most recent call last)
+Cell In[23], line 1
+----> 1 Total_Schools = school_data_complete[school_data_complete["school_name"]].count()
+      2 print(Total_Schools)
+
+File ~\anaconda3\Lib\site-packages\pandas\core\frame.py:3767, in DataFrame.__getitem__(self, key)
+   3765     if is_iterator(key):
+   3766         key = list(key)
+-> 3767     indexer = self.columns._get_indexer_strict(key, "columns")[1]
+   3769 # take() does not accept boolean indexers
+   3770 if getattr(indexer, "dtype", None) == bool:
+
+File ~\anaconda3\Lib\site-packages\pandas\core\indexes\base.py:5877, in Index._get_indexer_strict(self, key, axis_name)
+   5874 else:
+   5875     keyarr, indexer, new_indexer = self._reindex_non_unique(keyarr)
